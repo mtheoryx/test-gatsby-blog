@@ -1,27 +1,25 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "test-blog",
+  "description": "Gatsby Sandbox",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "David Poindexter <david.poindexter@gmail.com>",
   "dependencies": {
     "gatsby": "^1.9.241",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-react-helmet": "^2.0.8",
     "gatsby-source-filesystem": "^1.5.27",
     "gatsby-transformer-remark": "^1.7.39",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "serve": "^6.5.3"
   },
   "keywords": [
-    "gatsby"
+    "test"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write 'src/**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "NODE_ENV=production gatsby build",
+    "dev": "NODE_ENV=development gatsby develop",
+    "start": "serve ./public"
   },
-  "devDependencies": {
-    "prettier": "^1.11.1"
-  }
+  "devDependencies": {}
 }

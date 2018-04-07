@@ -83,9 +83,9 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     const allPosts = result.data.allMarkdownRemark.edges;
 
     //Filter draft posts out on production build
-    const allowedPosts = allPosts.filter(post => 
-      (process.env.NODE_ENV === 'development' 
-      || post.node.frontmatter.published));
+    const allowedPosts = allPosts.filter(post => {
+      return (process.env.NODE_ENV === 'development' || post.node.frontmatter.published) ? true : false;
+    });
     
     createTagPages(createPage, allowedPosts);
 
@@ -95,7 +95,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         component: blogPostTemplate,
         context: {
           prev: index === 0 ? null : allowedPosts[index - 1].node,
-          next: index === (allowedPosts.length - 1) ? null : allowedPosts [index + 1].node
+          next: index === (allowedPosts.length - 1) ? null : allowedPosts[index + 1].node
         }
       });
     });
