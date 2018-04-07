@@ -4,9 +4,9 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-transofrmer-remark',
+    'gatsby-transformer-remark',
     {
-      resolve: 'gatsby-source-file-system',
+      resolve: 'gatsby-source-filesystem',
       options: {
         name: `src`,
         path: `${__dirname}/src`
