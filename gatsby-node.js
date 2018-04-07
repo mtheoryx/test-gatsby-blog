@@ -32,9 +32,13 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       return Promise.reject(result.errors);
     }
 
-    const posts = result.data.allMarkdownRemark.edges;
+    const allPosts = result.data.allMarkdownRemark.edges;
 
-    posts.forEach(({node}) => {
+    const allowedPosts = allPosts.filter(edge => 
+      (process.env.NODE_ENV === 'development' 
+      || edge.node.frontmatter.published));
+
+    allowedPosts.forEach(({node}) => {
       createPage({
         path: node.frontmatter.path,
         component: blogPostTemplate

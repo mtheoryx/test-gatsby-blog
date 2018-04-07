@@ -3,7 +3,7 @@ import Link from 'gatsby-link'
 
 const IndexPage = ({data}) => {
   const { edges: posts } = data.allMarkdownRemark;
-  
+
   return (
     <div>
       {posts.map(({node: post}) => {
@@ -16,6 +16,7 @@ const IndexPage = ({data}) => {
               </Link>
               <p>{frontmatter.date}</p>
               <p>{frontmatter.excerpt}</p>
+              <span>Status: {frontmatter.published ? 'published' : 'draft'}</span>
             </h2>
           </div>
         ) : null

@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 
 const Template = ({data, location}) => {
   const { markdownRemark: post } = data;
-  const { frontmatter, html } = post;
+  const { frontmatter, html, published } = post;
   const { title, date } = frontmatter;
 
   return (
@@ -13,6 +13,7 @@ const Template = ({data, location}) => {
 
       <div>
         <h1>{title}</h1>
+        <span>Status: {published ? 'published' : 'draft'}</span>
         <h3>{date}</h3>
         <div dangerouslySetInnerHTML={{__html: html}} />
       </div>
