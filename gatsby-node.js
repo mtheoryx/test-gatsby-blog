@@ -34,14 +34,18 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
     const allPosts = result.data.allMarkdownRemark.edges;
 
-    const allowedPosts = allPosts.filter(edge => 
+    const allowedPosts = allPosts.filter(post => 
       (process.env.NODE_ENV === 'development' 
-      || edge.node.frontmatter.published));
+      || post.node.frontmatter.published));
 
-    allowedPosts.forEach(({node}) => {
+    allowedPosts.forEach(({node}, index) => {
       createPage({
         path: node.frontmatter.path,
-        component: blogPostTemplate
+        component: blogPostTemplate,
+        context: {
+          prev: index === 0 ? null : allowedPosts[index - 1].node,
+          next: index === (allowedPosts.length - 1) ? null : allowedPosts [index + 1].node
+        }
       });
     });
   });
